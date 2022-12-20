@@ -11,7 +11,7 @@ func TestKmpSearch(t *testing.T) {
 	b, index := KmpSearch(str, target)
 	fmt.Println(b, index)
 	if b != true || index != 6 {
-		t.Errorf("asdfasdf")
+		t.Errorf("TestKmpSearch failed.")
 	}
 
 }
@@ -25,6 +25,6 @@ func TestNewPi(t *testing.T) {
 		pi[2] != 0 ||
 		pi[3] != 0 ||
 		pi[4] != 1 {
-		t.Errorf("asdf")
+		t.Errorf("TestNewPi failed.")
 	}
 }

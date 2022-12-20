@@ -32,23 +32,27 @@ func KmpSearch(str string, target string) (bool, int) {
 }
 
 func newPi(target string) []int {
-	pi := make([]int, len(target)+1)
+	targLen := len(target)
+	pi := make([]int, targLen+1)
 	pi[0] = 0
 	pi[1] = 0
 
-	for i := 2; i <= len(target); i++ { // each process fills a cell of the slice
-		pi[i] = func(str string) int {
-			length := len(str)
-			count := 1
-			for count <= length/2 {
-				if str[:count] != str[length-count:] {
-					break
-				}
-				count++
-			}
+	makePi := func(str string) int {
+		strLen := len(str)
+		count := 1
 
-			return count - 1
-		}(target[:i])
+		for count <= strLen/2 {
+			if str[:count] != str[strLen-count:] {
+				break
+			}
+			count++
+		}
+
+		return count - 1
+	}
+
+	for i := 2; i <= targLen; i++ {
+		pi[i] = makePi(target[:i])
 	}
 
 	return pi
